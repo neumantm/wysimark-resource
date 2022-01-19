@@ -1,5 +1,5 @@
 import * as r from ".."
-import { getRequestFromURL } from "../utils"
+import { getMockRequestFromURL } from "../utils"
 
 function $(regexpString: string) {
   return new RegExp(regexpString.replace(`$1`, `[a-z0-9]+`))
@@ -135,7 +135,7 @@ describe("portive-resource", () => {
     /**
      * Check incoming request
      */
-    const request = getRequestFromURL(resizedImageUrl)
+    const request = getMockRequestFromURL(resizedImageUrl)
     expect(request).toEqual({
       uri: `/${originalKey}`,
       querystring: "size=320x240",

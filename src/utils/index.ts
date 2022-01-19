@@ -1,4 +1,5 @@
 import {
+  CloudFrontEvent,
   CloudFrontRequest,
   CONTENT_TYPE_LOOKUP,
   ImageContentType,
@@ -66,10 +67,17 @@ export function extractKeyFromURI(uri: string) {
  *
  * Useful for testing.
  */
-export function getRequestFromURL(urlString: string): CloudFrontRequest {
+export function getMockRequestFromURL(urlString: string): CloudFrontRequest {
   const url = new URL(urlString)
   return {
     uri: url.pathname,
     querystring: url.searchParams.toString(),
   }
+}
+
+export function getMockEventFromURL(
+  urlString: string
+): CloudFrontEvent<CloudFrontRequest> {
+  const mockRequest = getMockRequestFromURL(urlString)
+  return { Records: [{ cf: { request: mockRequest } }] }
 }
