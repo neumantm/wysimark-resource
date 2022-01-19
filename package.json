@@ -21,7 +21,9 @@
     "build": "rm -rf ./.dist/ && tsc -p tsconfig.ts-build.json && echo 'Finished Building'",
     "publish:patch": "yarn test:once && yarn build && yarn version --patch && echo '\"npm publish --access=public\" to publish to npm'",
     "--- test": "#",
-    "test:once": "jest --config=jest.once.config.js",
-    "test:watch": "jest --watch --config=jest.watch.config.js"
+    "test:once": "jest --config=jest.types.config.js",
+    "test:watch": "jest --watch --config=jest.no-types.config.js",
+    "test:watch:types": "jest --watch --config=jest.types.config.js",
+    "test:clearcache": "jest --clearCache"
   }
 }
