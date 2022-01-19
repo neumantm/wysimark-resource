@@ -6,4 +6,4 @@ export {
   generateGenericResource,
 } from "./generate-resource"
 export { getFilenameInfo } from "./get-filename-info"
-export { extractKeyFromURI } from "./utils"
+export * from "./utils"
