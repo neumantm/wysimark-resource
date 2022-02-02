@@ -7,6 +7,7 @@ import {
 } from "../types"
 import { FILE_DIR, QUERY_DIR } from "../types"
 import { getFilenameInfo } from "../get-filename-info"
+import { getSizeFromSearchParams } from ".."
 
 /**
  * Takes an S3 key and returns information about it.
@@ -60,21 +61,26 @@ function getQueryKeyInfo(key: string): QueryKeyInfo {
    */
   if (query === undefined) return unhandledQuery
 
-  /**
-   * If there is no size param, return unhandled
-   */
   const params = new URLSearchParams(query)
-  const size = params.get("size")
+  const size = getSizeFromSearchParams(params)
+
   if (size == null) return unhandledQuery
 
-  /**
-   * If size param is not valid, return unhandled
-   */
-  const [widthText, heightText] = size.split("x")
-  const width = parseInt(widthText)
-  const height = parseInt(heightText)
-  if (width <= 0 || height <= 0 || isNaN(width) || isNaN(height))
-    return unhandledQuery
+  // /**
+  //  * If there is no size param, return unhandled
+  //  */
+  // const params = new URLSearchParams(query)
+  // const size = params.get("size")
+  // if (size == null) return unhandledQuery
+
+  // /**
+  //  * If size param is not valid, return unhandled
+  //  */
+  // const [widthText, heightText] = size.split("x")
+  // const width = parseInt(widthText)
+  // const height = parseInt(heightText)
+  // if (width <= 0 || height <= 0 || isNaN(width) || isNaN(height))
+  //   return unhandledQuery
 
   /**
    * Extract originalImageInfo
@@ -87,8 +93,8 @@ function getQueryKeyInfo(key: string): QueryKeyInfo {
     type: "query/image",
     key,
     contentType: originalImageInfo.contentType,
-    width,
-    height,
+    width: size.width,
+    height: size.height,
     originalImageInfo,
   }
 }

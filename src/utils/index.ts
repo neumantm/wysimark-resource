@@ -61,6 +61,22 @@ export function extractKeyFromURI(uri: string) {
   return decodeURIComponent(uri).slice(1)
 }
 
+export function getSizeFromSearchParams(
+  params: URLSearchParams
+): { width: number; height: number } | null {
+  const size = params.get("size")
+  if (size == null) return null
+
+  /**
+   * If size param is not valid, return unhandled
+   */
+  const [widthText, heightText] = size.split("x")
+  const width = parseInt(widthText)
+  const height = parseInt(heightText)
+  if (width <= 0 || height <= 0 || isNaN(width) || isNaN(height)) return null
+  return { width, height }
+}
+
 /**
  * Takes a URL and returns the `uri` and `querystring` as it would appear in
  * a CloudFront Request.

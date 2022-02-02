@@ -66,6 +66,29 @@ export type GenericFilenameInfo = {
 
 export type FilenameInfo = ImageFilenameInfo | GenericFilenameInfo
 
+/**
+ * URL Info
+ */
+
+export type GenericURLInfo = {
+  type: "original/generic"
+}
+
+export type OriginalImageURLInfo = {
+  type: "original/image"
+  width: number
+  height: number
+}
+
+export type ImageQueryURLInfo = {
+  type: "query/image"
+  width: number
+  height: number
+  original: OriginalImageURLInfo
+}
+
+export type URLInfo = GenericURLInfo | OriginalImageURLInfo | ImageQueryURLInfo
+
 export const CONTENT_TYPE_LOOKUP = new Map([
   ["jpg", "image/jpeg"],
   ["jpeg", "image/jpeg"],

@@ -18,7 +18,7 @@ export function generateGenericResource({
   subpath,
   fileExt,
 }: {
-  origin: string // the part of the url that looks like `https://files.host.com/`
+  origin: string // the part of the url that looks like `https://files.host.com`
   subpath: string
   fileExt: string
 }) {
