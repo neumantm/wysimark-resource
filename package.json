@@ -1,12 +1,12 @@
 {
   "name": "wysimark-resource",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "author": "Sunny Hirai <thesunny@gmail.com>",
   "license": "MIT",
   "main": ".npm/src/index.js",
   "types": ".npm/src/index.d.ts",
   "files": [
-    ".dist/**/*"
+    ".npm/**/*"
   ],
   "dependencies": {
     "nanoid": "^3.2.0"
