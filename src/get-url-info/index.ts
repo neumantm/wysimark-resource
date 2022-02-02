@@ -28,21 +28,25 @@ export function getUrlInfo(urlInResourcePath: string): URLInfo {
   if (filenameInfo.type === "original/generic")
     return {
       type: "original/generic",
+      url: urlInResourcePath,
     }
   const querySize = getSizeFromSearchParams(url.searchParams)
   if (querySize == null) {
     return {
       type: "original/image",
+      url: urlInResourcePath,
       width: filenameInfo.width,
       height: filenameInfo.height,
     }
   }
   return {
     type: "query/image",
+    url: urlInResourcePath,
     width: querySize.width,
     height: querySize.height,
     original: {
       type: "original/image",
+      url: `${url.origin}${url.pathname}`,
       width: filenameInfo.width,
       height: filenameInfo.height,
     },
