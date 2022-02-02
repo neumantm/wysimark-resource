@@ -1,10 +1,10 @@
 {
   "name": "wysimark-resource",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "author": "Sunny Hirai <thesunny@gmail.com>",
   "license": "MIT",
-  "main": ".dist/src/index.js",
-  "types": ".dist/src/index.d.ts",
+  "main": ".npm/src/index.js",
+  "types": ".npm/src/index.d.ts",
   "files": [
     ".dist/**/*"
   ],
@@ -17,6 +17,7 @@
     "jest": "^27.0.6",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.4.0",
+    "tsc": "^2.0.4",
     "tsconfig-paths": "^3.12.0",
     "type-fest": "^2.5.2",
     "typescript": "^4.5.5"
@@ -30,6 +31,10 @@
     "test:watch:types": "jest --watch --config=jest.config.js",
     "test:clearcache": "jest --clearCache",
     "-- preset": "# Run preset from @thesunny/presets",
-    "preset": "ts-node --project node_modules/@thesunny/presets/tsconfig.ts-node.json node_modules/@thesunny/presets/bin/index.ts"
+    "preset": "ts-node --project node_modules/@thesunny/presets/tsconfig.ts-node.json node_modules/@thesunny/presets/bin/index.ts",
+    "--- npm": "# npm package scripts",
+    "build:npm:once": "rm -rf ./.npm/ && tsc -p tsconfig.ts-build.json && echo 'Finished Building'",
+    "build:npm:watch": "rm -rf ./.npm/ && tsc -p tsconfig.ts-build.json --watch",
+    "publish:npm:patch": "yarn test:once && yarn build:npm:once && yarn version --patch && echo '\"npm publish --access=public\" to publish to npm'"
   }
 }
