@@ -10,3 +10,15 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+# For dotenv environment variables
+.env/
+# distribution directories
+.npm/
+.build
+# used by Next.js
+.next/
+# ignore vercel link
+.vercel/
+# standard ignorable files found when using Yarn
+.DS_Store
+yarn-error.log

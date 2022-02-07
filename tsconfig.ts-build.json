@@ -1,6 +1,11 @@
 {
-  "extends": "./tsconfig.base.json",
+  "extends": "./tsconfig.custom.json",
   "compilerOptions": {
+    /**
+     * When we do a build, we want the output to be in `commonjs` so that plain
+     * Node.js can understand it.
+     */
+    "module": "commonjs",
     /**
      * Emit
      *
@@ -14,11 +19,11 @@
      */
     "declaration": true,
     "noEmit": false,
-    "outDir": ".dist",
+    "outDir": ".npm",
     "jsx": "react-jsx"
   },
   /**
    * Exclude `*.test.ts` files because they are not part of the output.
    */
-  "exclude": ["**/*.test.ts", "**/test/**/*", "pages", "components"]
+  "exclude": ["**/*.test.ts", "**/test/**/*", "examples"]
 }
