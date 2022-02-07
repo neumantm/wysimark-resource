@@ -1,6 +1,6 @@
 {
   "name": "wysimark-resource",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "author": "Sunny Hirai <thesunny@gmail.com>",
   "license": "MIT",
   "main": ".npm/src/index.js",
