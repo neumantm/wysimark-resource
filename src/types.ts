@@ -73,6 +73,11 @@ export type UploadCustomProps = {
   options: Record<string, string>
 }
 
+export type UploadProps =
+  | UploadDemoProps
+  | UploadHostedProps
+  | UploadCustomProps
+
 export type UploadSuccessResponse = {
   status: "success"
   data: {
