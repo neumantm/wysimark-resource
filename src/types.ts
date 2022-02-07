@@ -49,6 +49,40 @@ export type UploadImageFileInfo = {
 export type UploadFileInfo = UploadGenericFileInfo | UploadImageFileInfo
 
 /**
+ * Upload Props and Response
+ */
+
+export type UploadDemoProps = {
+  file: UploadFileInfo
+}
+
+export type UploadHostedProps = {
+  file: UploadFileInfo
+  options: {
+    path: string
+    token: string // `${publicKey}:${secretKey}`
+    limit?: {
+      path: string
+      bytes: number
+    }
+  }
+}
+
+export type UploadCustomProps = {
+  file: UploadFileInfo
+  options: Record<string, string>
+}
+
+export type UploadSuccessResponse = {
+  status: "success"
+  data: {
+    formFields: Record<string, string>
+    apiUrl: string
+    fileUrl: string
+  }
+}
+
+/**
  * File Query Info
  */
 export type ImageQueryKeyInfo = {
