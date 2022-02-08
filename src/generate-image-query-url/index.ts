@@ -1,7 +1,6 @@
 /**
- *
- * Resize only works on URLs and not on a key. This makes sense because only the
- * client has the ability to initiate a resize.
+ * Takes an existing image URL and return a new URL o fthe image resized to
+ * the width/height in the arguments.
  */
 
 import { getFilenameInfo } from "../get-filename-info"

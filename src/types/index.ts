@@ -54,6 +54,7 @@ export type UploadFileInfo = UploadGenericFileInfo | UploadImageFileInfo
 
 export type UploadDemoProps = {
   file: UploadFileInfo
+  options: Record<string, string>
 }
 
 export type UploadHostedProps = {
