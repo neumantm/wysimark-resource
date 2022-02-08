@@ -61,7 +61,8 @@ export type UploadHostedProps = {
   file: UploadFileInfo
   options: {
     app: string // app name
-    token: string // `${publicKey}:${secretKey}`
+    keyId: string // `${publicKey}:${secretKey}`
+    secretKey: string
     path: string
     limit?: {
       path: string
