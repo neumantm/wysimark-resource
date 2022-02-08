@@ -1,6 +1,6 @@
 {
   "name": "wysimark-resource",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "author": "Sunny Hirai <thesunny@gmail.com>",
   "license": "MIT",
   "main": ".npm/src/index.js",
@@ -23,7 +23,7 @@
     "typescript": "^4.5.5"
   },
   "scripts": {
-    "build": "rm -rf ./.dist/ && tsc -p tsconfig.ts-build.json && echo 'Finished Building'",
+    "build": "rm -rf ./.npm/ && tsc -p tsconfig.ts-build.json && echo 'Finished Building'",
     "publish:patch": "yarn test:once && yarn build && yarn version --patch && echo '\"npm publish --access=public\" to publish to npm'",
     "--- test": "#",
     "test:once": "jest --config=jest.config.js",
