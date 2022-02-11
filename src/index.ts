@@ -4,6 +4,7 @@ export { generateImageQueryUrl } from "./generate-image-query-url"
 export {
   generateImageResource,
   generateGenericResource,
+  generateResource,
 } from "./generate-resource"
 export { getFilenameInfo } from "./get-filename-info"
 export { getUrlInfo } from "./get-url-info"
