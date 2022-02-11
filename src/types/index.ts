@@ -1,3 +1,5 @@
+export * from "./resource"
+
 export type ImageContentType = "image/jpeg" | "image/gif" | "image/png"
 
 /**
@@ -61,8 +63,6 @@ export type UploadHostedProps = {
   file: UploadFileInfo
   options: {
     app: string // app name
-    keyId: string // `${publicKey}:${secretKey}`
-    secretKey: string
     path: string
     limit?: {
       path: string

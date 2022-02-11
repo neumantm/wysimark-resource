@@ -16,6 +16,7 @@ describe("portive-resource", () => {
       fileExt: "txt",
     })
     expect(generateInfo).toEqual({
+      type: "generic",
       key: expect.stringMatching($(`f/temp/a/b/c/$1.txt`)),
       url: expect.stringMatching(
         $(`https://files.portive.com/f/temp/a/b/c/$1.txt`)
@@ -68,6 +69,7 @@ describe("portive-resource", () => {
       height: 768,
     })
     expect(generateInfo).toEqual({
+      type: "image",
       key: expect.stringMatching($(`f/temp/a/b/c/$1--1024x768.jpeg`)),
       url: expect.stringMatching(
         $(`https://files.portive.com/f/temp/a/b/c/$1--1024x768.jpeg`)

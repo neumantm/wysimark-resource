@@ -1,5 +1,11 @@
 import { customAlphabet } from "nanoid"
-import { FILE_DIR } from "../types"
+import {
+  FILE_DIR,
+  UploadFileInfo,
+  ImageResource,
+  GenericResource,
+  Resource,
+} from "../types"
 import { getImageContentType } from "../utils"
 
 /**
@@ -21,13 +27,14 @@ export function generateGenericResource({
   origin: string // the part of the url that looks like `https://files.host.com`
   subpath: string
   fileExt: string
-}) {
+}): GenericResource {
   if (origin.endsWith("/")) {
     throw new Error(`origin must not end with a /`)
   }
   const filename = `${customId()}.${fileExt}`
   const originalKey = `${subpath}/${filename}`
   return {
+    type: "generic",
     key: `${FILE_DIR}/${subpath}/${filename}`,
     url: `${origin}/${FILE_DIR}/${originalKey}`,
   }
@@ -50,7 +57,7 @@ export function generateImageResource({
   fileExt: string
   width: number
   height: number
-}) {
+}): ImageResource {
   if (origin.endsWith("/")) {
     throw new Error(`origin must not end with a /`)
   }
@@ -60,9 +67,34 @@ export function generateImageResource({
   }
   const originalKey = `${subpath}/${customId()}--${width}x${height}.${fileExt}`
   return {
+    type: "image",
     key: `${FILE_DIR}/${originalKey}`,
     url: `${origin}/${FILE_DIR}/${originalKey}`,
     width,
     height,
   }
+}
+
+export function generateResource({
+  origin,
+  subpath,
+  fileInfo,
+}: {
+  origin: string
+  subpath: string
+  fileInfo: UploadFileInfo
+}): Resource {
+  const fileExt = fileInfo.filename.split(".").pop()
+  if (typeof fileExt !== "string") {
+    throw new Error(`Expected fileext to be a string`)
+  }
+  return fileInfo.type === "generic"
+    ? generateGenericResource({ origin, subpath, fileExt })
+    : generateImageResource({
+        origin,
+        subpath,
+        fileExt,
+        width: fileInfo.width,
+        height: fileInfo.height,
+      })
 }
