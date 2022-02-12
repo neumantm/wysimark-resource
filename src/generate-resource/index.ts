@@ -2,6 +2,8 @@ import { customAlphabet } from "nanoid"
 import {
   FILE_DIR,
   UploadFileInfo,
+  UploadGenericFileInfo,
+  UploadImageFileInfo,
   ImageResource,
   GenericResource,
   Resource,
@@ -13,6 +15,14 @@ import { getImageContentType } from "../utils"
  */
 const customId = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyz", 21)
 
+function getFileExt(path: string): string {
+  const fileExt = path.split(".").pop()
+  if (fileExt === undefined) {
+    throw new Error(`fileExt cannot be undefined`)
+  }
+  return fileExt
+}
+
 /**
  * Generates an S3 key and URL for an generic uploaded file (i.e. a file that
  * is not an image)
@@ -22,15 +32,16 @@ const customId = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyz", 21)
 export function generateGenericResource({
   origin, // must not end with `/`
   subpath,
-  fileExt,
+  fileInfo,
 }: {
   origin: string // the part of the url that looks like `https://files.host.com`
   subpath: string
-  fileExt: string
+  fileInfo: UploadGenericFileInfo
 }): GenericResource {
   if (origin.endsWith("/")) {
     throw new Error(`origin must not end with a /`)
   }
+  const fileExt = getFileExt(fileInfo.filename)
   const filename = `${customId()}.${fileExt}`
   const originalKey = `${subpath}/${filename}`
   return {
@@ -48,30 +59,35 @@ export function generateGenericResource({
 export function generateImageResource({
   origin,
   subpath,
-  fileExt,
-  width,
-  height,
-}: {
+  fileInfo,
+}: // fileExt,
+// width,
+// height,
+{
   origin: string // the part of the url that looks like `https://files.host.com/`
   subpath: string
-  fileExt: string
-  width: number
-  height: number
+  fileInfo: UploadImageFileInfo
+  // fileExt: string
+  // width: number
+  // height: number
 }): ImageResource {
   if (origin.endsWith("/")) {
     throw new Error(`origin must not end with a /`)
   }
+  const fileExt = getFileExt(fileInfo.filename)
   const contentType = getImageContentType(fileExt)
   if (contentType == null) {
     throw new Error(`The fileExt ${fileExt} is not a handled image extension`)
   }
-  const originalKey = `${subpath}/${customId()}--${width}x${height}.${fileExt}`
+  const originalKey = `${subpath}/${customId()}--${fileInfo.width}x${
+    fileInfo.height
+  }.${fileExt}`
   return {
     type: "image",
     key: `${FILE_DIR}/${originalKey}`,
     url: `${origin}/${FILE_DIR}/${originalKey}`,
-    width,
-    height,
+    width: fileInfo.width,
+    height: fileInfo.height,
   }
 }
 
@@ -89,12 +105,10 @@ export function generateResource({
     throw new Error(`Expected fileext to be a string`)
   }
   return fileInfo.type === "generic"
-    ? generateGenericResource({ origin, subpath, fileExt })
+    ? generateGenericResource({ origin, subpath, fileInfo })
     : generateImageResource({
         origin,
         subpath,
-        fileExt,
-        width: fileInfo.width,
-        height: fileInfo.height,
+        fileInfo,
       })
 }

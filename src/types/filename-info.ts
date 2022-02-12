@@ -4,6 +4,10 @@ import { ImageContentType } from "./content-type"
  * Filename Info
  */
 
+export type GenericFilenameInfo = {
+  type: "original/generic"
+}
+
 export type ImageFilenameInfo = {
   type: "original/image"
   contentType: ImageContentType
@@ -11,8 +15,4 @@ export type ImageFilenameInfo = {
   height: number
 }
 
-export type GenericFilenameInfo = {
-  type: "original/generic"
-}
-
-export type FilenameInfo = ImageFilenameInfo | GenericFilenameInfo
+export type FilenameInfo = GenericFilenameInfo | ImageFilenameInfo

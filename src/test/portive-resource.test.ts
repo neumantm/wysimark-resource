@@ -13,7 +13,11 @@ describe("portive-resource", () => {
     const generateInfo = r.generateGenericResource({
       origin: "https://files.portive.com",
       subpath: "temp/a/b/c",
-      fileExt: "txt",
+      fileInfo: {
+        type: "generic",
+        filename: "alphabet.txt",
+        bytes: 100,
+      },
     })
     expect(generateInfo).toEqual({
       type: "generic",
@@ -64,9 +68,13 @@ describe("portive-resource", () => {
     const generateInfo = r.generateImageResource({
       origin: "https://files.portive.com",
       subpath: "temp/a/b/c",
-      fileExt: "jpeg",
-      width: 1024,
-      height: 768,
+      fileInfo: {
+        type: "image",
+        filename: "filename.jpeg",
+        bytes: 1024,
+        width: 1024,
+        height: 768,
+      },
     })
     expect(generateInfo).toEqual({
       type: "image",
@@ -118,9 +126,13 @@ describe("portive-resource", () => {
     const generateInfo = r.generateImageResource({
       origin: "https://files.portive.com",
       subpath: "temp/a/b/c",
-      fileExt: "jpeg",
-      width: 1024,
-      height: 768,
+      fileInfo: {
+        type: "image",
+        filename: "abc.jpeg",
+        bytes: 1024,
+        width: 1024,
+        height: 768,
+      },
     })
     const originalUrl = generateInfo.url
     const originalKey = generateInfo.key
