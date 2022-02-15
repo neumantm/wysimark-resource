@@ -38,6 +38,7 @@ import { Simplify } from "type-fest"
  * Uploading using the Demo API has no special properties
  */
 export type DemoAPIUploadProps = {
+  type: "demo"
   file: UploadFileInfo
 }
 
