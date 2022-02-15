@@ -58,7 +58,7 @@ export type DemoAPIUploadProps = {
  */
 export type CloudAPIUploadProps = {
   file: UploadFileInfo
-  app: string // app name
+  appName: string // app name
   path: string
   apiKeyId: string
   apiSecretKey: string
