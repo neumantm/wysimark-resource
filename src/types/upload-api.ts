@@ -56,7 +56,7 @@ export type DemoAPIUploadProps = {
  * Eventually, for an app with untrusted users, you will want to upgrade to
  * the private upload which can be authenticated.
  */
-export type CloudAPIUploadProps = {
+export type DirectAPIUploadProps = {
   file: UploadFileInfo
   appName: string // app name
   path: string
@@ -66,6 +66,22 @@ export type CloudAPIUploadProps = {
     path: string
     bytes: number
   }
+}
+
+export type JwtApiUploadProps = {
+  jwt: string
+}
+
+export type JwtApiUploadPayload = {
+  file: UploadFileInfo
+  appName: string // app name
+  path: string
+  apiKeyId: string
+  limit?: {
+    path: string
+    bytes: number
+  }
+  iat: number
 }
 
 /**
