@@ -68,11 +68,11 @@ export type DirectAPIUploadProps = {
   }
 }
 
-export type JwtApiUploadProps = {
+export type JWTAPIUploadProps = {
   jwt: string
 }
 
-export type JwtApiUploadPayload = {
+export type JWTAPIUploadPayload = {
   file: UploadFileInfo
   appName: string // app name
   path: string
