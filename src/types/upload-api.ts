@@ -57,6 +57,7 @@ export type DemoAPIUploadProps = {
  * the private upload which can be authenticated.
  */
 export type SecretAPIUploadProps = {
+  type: "secret"
   file: UploadFileInfo
   appName: string // app name
   path: string
@@ -69,10 +70,12 @@ export type SecretAPIUploadProps = {
 }
 
 export type JWTAPIUploadProps = {
+  type: "jwt"
   jwt: string
 }
 
 export type JWTAPIUploadPayload = {
+  type: "jwt"
   file: UploadFileInfo
   appName: string // app name
   path: string
@@ -90,36 +93,17 @@ export type JWTAPIUploadPayload = {
  * Instead, the call is made to an API endpoint that the developer controls.
  */
 export type CustomAPIUploadProps = {
+  type: "custom"
   file: UploadFileInfo
   data: Record<string, string>
 }
 
 /**
- * Takes a set of API Props and turns it into a set of UploadProps for use
- * in the editor.
+ * NOTE:
+ *
+ * We no longer provide the Editor Upload Props here as it's not a cross
+ * library concern and therefore adds an unnecessary step to modify the Editor.
  */
-type EditorPropsType<
-  K extends string,
-  T extends Record<string, any>
-> = Simplify<
-  {
-    type: K
-  } & Omit<T, "file">
->
-
-// export type CustomUploadEditorProps = {
-//   type: "custom"
-//   data: Record<string, string>
-// }
-
-// export type DemoEditorUploadProps = EditorPropsType<"demo", UploadDemoProps>
-
-// export type CloudEditorUploadProps = EditorPropsType<"cloud", UploadAPIProps>
-
-// export type CustomEditorUploadProps = EditorPropsType<
-//   "custom",
-//   CustomUploadAPIProps
-// >
 
 export type UploadSuccessResponse = {
   status: "success"
