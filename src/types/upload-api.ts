@@ -56,7 +56,7 @@ export type DemoAPIUploadProps = {
  * Eventually, for an app with untrusted users, you will want to upgrade to
  * the private upload which can be authenticated.
  */
-export type DirectAPIUploadProps = {
+export type SecretAPIUploadProps = {
   file: UploadFileInfo
   appName: string // app name
   path: string
