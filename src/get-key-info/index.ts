@@ -36,7 +36,7 @@ function getFileKeyInfo(key: string): FileKeyInfo {
 
 function getImageFileKeyInfo(key: string): ImageFileKeyInfo {
   const info = getFileKeyInfo(key)
-  if (info.type !== "original/image") {
+  if (info.type !== "image") {
     throw new Error(`Expected key to match an original image`)
   }
   return info
@@ -51,7 +51,7 @@ function getImageFileKeyInfo(key: string): ImageFileKeyInfo {
  */
 function getQueryKeyInfo(key: string): QueryKeyInfo {
   const unhandledQuery: UnrecognizedQueryKeyInfo = {
-    type: "query/unrecognized",
+    type: "unrecognized-query",
     key,
   }
   const [path, query] = key.split("?") as [string] | [string, string]
@@ -90,7 +90,7 @@ function getQueryKeyInfo(key: string): QueryKeyInfo {
     `${FILE_DIR}/${path.split("/").slice(1).join("/")}`
   )
   return {
-    type: "query/image",
+    type: "image-query",
     key,
     contentType: originalImageInfo.contentType,
     width: size.width,

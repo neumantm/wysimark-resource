@@ -5,11 +5,11 @@ import { ImageContentType } from "./content-type"
  */
 
 export type GenericFilenameInfo = {
-  type: "original/generic"
+  type: "generic"
 }
 
 export type ImageFilenameInfo = {
-  type: "original/image"
+  type: "image"
   contentType: ImageContentType
   width: number
   height: number

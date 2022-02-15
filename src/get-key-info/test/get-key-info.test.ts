@@ -15,7 +15,7 @@ describe("parseKey", () => {
     it("should identify an original file", async () => {
       const info = getKeyInfo("f/a/b/c/alphabet.txt")
       expect(info).toEqual({
-        type: "original/generic",
+        type: "generic",
         key: "f/a/b/c/alphabet.txt",
       })
     })
@@ -25,7 +25,7 @@ describe("parseKey", () => {
     it("should identify an original image file", async () => {
       const info = getKeyInfo("f/a/b/c/chickens--640x480.png")
       expect(info).toEqual({
-        type: "original/image",
+        type: "image",
         key: "f/a/b/c/chickens--640x480.png",
         contentType: "image/png",
         width: 640,
@@ -36,7 +36,7 @@ describe("parseKey", () => {
     it("should identify an invalid original image file as an other file", async () => {
       const info = getKeyInfo("f/a/b/c/chickens--0x0.png")
       expect(info).toEqual({
-        type: "original/generic",
+        type: "generic",
         key: "f/a/b/c/chickens--0x0.png",
       })
     })
@@ -46,13 +46,13 @@ describe("parseKey", () => {
     it("should identify a query image", async () => {
       const info = getKeyInfo("fq/a/b/c/d--640x480.jpg?size=320x240")
       expect(info).toEqual({
-        type: "query/image",
+        type: "image-query",
         key: "fq/a/b/c/d--640x480.jpg?size=320x240",
         contentType: "image/jpeg",
         width: 320,
         height: 240,
         originalImageInfo: {
-          type: "original/image",
+          type: "image",
           key: "f/a/b/c/d--640x480.jpg",
           contentType: "image/jpeg",
           width: 640,
@@ -66,7 +66,7 @@ describe("parseKey", () => {
     it("should return unrecognized if there are no query params", async () => {
       const info = getKeyInfo("fq/a/b/c/d--640x480.jpg")
       expect(info).toEqual({
-        type: "query/unrecognized",
+        type: "unrecognized-query",
         key: "fq/a/b/c/d--640x480.jpg",
       })
     })
@@ -74,7 +74,7 @@ describe("parseKey", () => {
     it("should return unrecognized if there is no size param", async () => {
       const info = getKeyInfo("fq/a/b/c/d--640x480.jpg?dimensions=320x480")
       expect(info).toEqual({
-        type: "query/unrecognized",
+        type: "unrecognized-query",
         key: "fq/a/b/c/d--640x480.jpg?dimensions=320x480",
       })
     })
@@ -82,7 +82,7 @@ describe("parseKey", () => {
     it("should return unrecognized if width <= 0", async () => {
       const info = getKeyInfo("fq/a/b/c/d--640x480.jpg?size=0x480")
       expect(info).toEqual({
-        type: "query/unrecognized",
+        type: "unrecognized-query",
         key: "fq/a/b/c/d--640x480.jpg?size=0x480",
       })
     })
@@ -90,7 +90,7 @@ describe("parseKey", () => {
     it("should return unrecognized if height <= 0", async () => {
       const info = getKeyInfo("fq/a/b/c/d--640x480.jpg?size=320x0")
       expect(info).toEqual({
-        type: "query/unrecognized",
+        type: "unrecognized-query",
         key: "fq/a/b/c/d--640x480.jpg?size=320x0",
       })
     })
@@ -98,7 +98,7 @@ describe("parseKey", () => {
     it("should return unrecognized if width is NaN", async () => {
       const info = getKeyInfo("fq/a/b/c/d--640x480.jpg?size=onex480")
       expect(info).toEqual({
-        type: "query/unrecognized",
+        type: "unrecognized-query",
         key: "fq/a/b/c/d--640x480.jpg?size=onex480",
       })
     })
@@ -106,7 +106,7 @@ describe("parseKey", () => {
     it("should return unrecognized if height is NaN", async () => {
       const info = getKeyInfo("fq/a/b/c/d--640x480.jpg?size=320xone")
       expect(info).toEqual({
-        type: "query/unrecognized",
+        type: "unrecognized-query",
         key: "fq/a/b/c/d--640x480.jpg?size=320xone",
       })
     })
@@ -114,7 +114,7 @@ describe("parseKey", () => {
     it("should return unrecognized if only width provided", async () => {
       const info = getKeyInfo("fq/a/b/c/d--640x480.jpg?size=320")
       expect(info).toEqual({
-        type: "query/unrecognized",
+        type: "unrecognized-query",
         key: "fq/a/b/c/d--640x480.jpg?size=320",
       })
     })

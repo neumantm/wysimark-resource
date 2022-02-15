@@ -26,7 +26,7 @@ function getImageFilenameInfo(filename: string): ImageFilenameInfo | null {
   const height = parseInt($height)
   if (width <= 0 || height <= 0) return null
   return {
-    type: "original/image",
+    type: "image",
     contentType: imageContentType,
     width,
     height,
@@ -41,6 +41,6 @@ export function getFilenameInfo(filename: string): FilenameInfo {
   const imageInfo = getImageFilenameInfo(filename)
   if (imageInfo) return imageInfo
   return {
-    type: "original/generic",
+    type: "generic",
   }
 }

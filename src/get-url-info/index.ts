@@ -25,27 +25,27 @@ export function getUrlInfo(urlInResourcePath: string): URLInfo {
   const filename = url.pathname.split("/").pop()
   if (filename == null) throw new Error(`Expected a filename`)
   const filenameInfo = getFilenameInfo(filename)
-  if (filenameInfo.type === "original/generic")
+  if (filenameInfo.type === "generic")
     return {
-      type: "original/generic",
+      type: "generic",
       url: urlInResourcePath,
     }
   const querySize = getSizeFromSearchParams(url.searchParams)
   if (querySize == null) {
     return {
-      type: "original/image",
+      type: "image",
       url: urlInResourcePath,
       width: filenameInfo.width,
       height: filenameInfo.height,
     }
   }
   return {
-    type: "query/image",
+    type: "image-query",
     url: urlInResourcePath,
     width: querySize.width,
     height: querySize.height,
     original: {
-      type: "original/image",
+      type: "image",
       url: `${url.origin}${url.pathname}`,
       width: filenameInfo.width,
       height: filenameInfo.height,

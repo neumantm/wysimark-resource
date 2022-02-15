@@ -51,7 +51,7 @@ describe("portive-resource", () => {
      * Get Key Info
      */
     const keyInfo = r.getKeyInfo(requestKey)
-    expect(keyInfo).toEqual({ type: "original/generic", key: generatedKey })
+    expect(keyInfo).toEqual({ type: "generic", key: generatedKey })
 
     /**
      * Process Image should fail
@@ -111,7 +111,7 @@ describe("portive-resource", () => {
      */
     const keyInfo = r.getKeyInfo(requestKey)
     expect(keyInfo).toEqual({
-      type: "original/image",
+      type: "image",
       key: generatedKey,
       contentType: "image/jpeg",
       width: 1024,
@@ -170,14 +170,14 @@ describe("portive-resource", () => {
 
     const resizedKeyInfo = r.getKeyInfo(remappedKey)
     expect(resizedKeyInfo).toEqual({
-      type: "query/image",
+      type: "image-query",
       key: remappedKey,
       contentType: "image/jpeg",
       width: 320,
       height: 240,
       originalImageInfo: {
         key: originalKey,
-        type: "original/image",
+        type: "image",
         contentType: "image/jpeg",
         width: 1024,
         height: 768,

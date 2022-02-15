@@ -17,7 +17,7 @@ export function generateImageQueryUrl(
   const urlInfo = new URL(url)
   const filename = extractFilename(urlInfo.pathname)
   const filenameInfo = getFilenameInfo(filename)
-  if (filenameInfo.type !== "original/image") {
+  if (filenameInfo.type !== "image") {
     throw new Error(`Invalid image url ${JSON.stringify(url)}`)
   }
   if (width > filenameInfo.width || height > filenameInfo.height) {

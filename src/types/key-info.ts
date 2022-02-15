@@ -12,7 +12,7 @@ export type UnrecognizedKeyInfo = {
  * File Key Info
  */
 export type ImageFileKeyInfo = {
-  type: "original/image"
+  type: "image"
   key: string
   contentType: ImageContentType
   width: number
@@ -20,7 +20,7 @@ export type ImageFileKeyInfo = {
 }
 
 export type GenericFileKeyInfo = {
-  type: "original/generic"
+  type: "generic"
   key: string
 }
 
@@ -30,7 +30,7 @@ export type FileKeyInfo = ImageFileKeyInfo | GenericFileKeyInfo
  * File Query Info
  */
 export type ImageQueryKeyInfo = {
-  type: "query/image"
+  type: "image-query"
   contentType: ImageContentType
   key: string
   width: number
@@ -39,7 +39,7 @@ export type ImageQueryKeyInfo = {
 }
 
 export type UnrecognizedQueryKeyInfo = {
-  type: "query/unrecognized"
+  type: "unrecognized-query"
   key: string
 }
 

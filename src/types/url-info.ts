@@ -3,19 +3,19 @@
  */
 
 export type GenericURLInfo = {
-  type: "original/generic"
+  type: "generic"
   url: string
 }
 
 export type OriginalImageURLInfo = {
-  type: "original/image"
+  type: "image"
   url: string
   width: number
   height: number
 }
 
 export type ImageQueryURLInfo = {
-  type: "query/image"
+  type: "image-query"
   url: string
   width: number
   height: number
