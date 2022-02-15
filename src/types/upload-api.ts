@@ -5,34 +5,34 @@ import { Simplify } from "type-fest"
  * Upload Props and Response
  */
 
-export type UploadDemoProps = {
-  file: UploadFileInfo
-  options: Record<string, string>
-}
+// export type UploadDemoProps = {
+//   file: UploadFileInfo
+//   options: Record<string, string>
+// }
 
-export type UploadHostedProps = {
-  file: UploadFileInfo
-  options: {
-    app: string // app name
-    path: string
-    apiKeyId: string
-    apiSecretKey: string
-    limit?: {
-      path: string
-      bytes: number
-    }
-  }
-}
+// export type UploadHostedProps = {
+//   file: UploadFileInfo
+//   options: {
+//     app: string // app name
+//     path: string
+//     apiKeyId: string
+//     apiSecretKey: string
+//     limit?: {
+//       path: string
+//       bytes: number
+//     }
+//   }
+// }
 
-export type UploadCustomProps = {
-  file: UploadFileInfo
-  options: Record<string, string>
-}
+// export type UploadCustomProps = {
+//   file: UploadFileInfo
+//   options: Record<string, string>
+// }
 
-export type UploadProps =
-  | UploadDemoProps
-  | UploadHostedProps
-  | UploadCustomProps
+// export type UploadProps =
+//   | UploadDemoProps
+//   | UploadHostedProps
+//   | UploadCustomProps
 
 /**
  * Uploading using the Demo API has no special properties
